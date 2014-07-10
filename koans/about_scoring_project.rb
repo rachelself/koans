@@ -38,48 +38,166 @@ def score(dice)
     return points
   else
     # a, b, c, d, e = dice.sort
+    ones = []
+    twos = []
+    threes = []
+    fours = []
+    fives = []
+    sixes = []
 
-    #dice.each do |die|
-
-
-    if dice.include?(5)
-      fives = []
-      dice.each do |die|
-        if die == 5
-          fives << 5
-          #puts "Pushed a 5 into fives array"
-        end
-      end
-
-      if fives.size != 3
-        fives.each do |five|
-          points += 50
-          #puts "We are adding points (fives)! total: #{points}"
-          #puts "This is the fives array: #{fives}"
-        end
-      elsif fives.size == 3
-        points += 500
-      end
-    end
-
-    if dice.include?(1)
-      ones = []
-      dice.each do |die|
-        if die == 1
-          ones << 1
-          # puts "Pushed a 1 into ones array"
-        end
-      end
-      if ones.size != 3
-        ones.each do |one|
-          points += 100
-          # puts "We are adding points (ones)! total: #{points}"
-          # puts "This is the ones array: #{ones}"
-        end
-      elsif ones.size == 3
-        points += 1000
+    dice.each do |die|
+      # puts "inside dice.each loop"
+      if die == 1
+        ones << 1
+        # puts "put a 1 into ones"
+      elsif die == 2
+        twos << 2
+      elsif die == 3
+        threes << 3
+      elsif die == 4
+        fours << 4
+      elsif die == 5
+        fives << 5
+        # puts "put a 5 into fives"
+      elsif die == 6
+        sixes << 6
       end
     end
+
+      #ONES
+      if ones.size != 0
+        if ones.size >= 3
+          points += 1000
+
+          3.times do
+            ones.pop
+          end
+
+          if ones.size != 0
+            ones.each do |one|
+              points += 100
+            end
+          end
+          
+        else
+          ones.each do |one|
+            points += 100
+          end
+        end
+      end
+
+      #TWOS
+      if twos.size != 0
+        if twos.size == 3
+          points += 200
+        end
+      end
+
+      #THREES
+      if threes.size != 0
+        if threes.size == 3
+          points += 300
+        end
+      end
+
+      #FOURS
+      if fours.size != 0
+        if fours.size == 3
+          points += 400
+        end
+      end
+
+      #FIVES
+      if fives.size != 0
+        # puts "fives is NOT empty"
+        if fives.size >= 3
+          # puts "there are 3 fives"
+          points += 500
+
+          3.times do
+            fives.pop
+          end
+
+          if fives.size != 0
+            fives.each do |five|
+              points += 50
+            end
+          end
+        else
+          # puts "fives.size is NOT 3..."
+          fives.each do |five|
+            points += 50
+            # puts "added 50 points"
+          end
+        end
+      end
+
+      #SIX
+      if sixes.size != 0
+        if sixes.size == 3
+          points += 600
+        end
+      end
+
+
+
+
+
+
+
+      # if die != 1
+      #   puts "not a 1 or a 5"
+      #   if die == 2
+      #     points += 200
+      #   elsif die == 3
+      #     points += 300
+      #   elsif die == 4
+      #     points += 400
+      #   elsif die == 5
+      #     points += 500
+      #   end
+      # end
+
+
+
+    # if dice.include?(5)
+    #   fives = []
+    #   dice.each do |die|
+    #     if die == 5
+    #       fives << 5
+    #       #puts "Pushed a 5 into fives array"
+    #     end
+    #   end
+    #
+    #   if fives.size != 3
+    #     fives.each do |five|
+    #       points += 50
+    #       #puts "We are adding points (fives)! total: #{points}"
+    #       #puts "This is the fives array: #{fives}"
+    #     end
+    #   elsif fives.size == 3
+    #     points += 500
+    #   end
+    # end
+    #
+    # if dice.include?(1)
+    #   ones = []
+    #   dice.each do |die|
+    #     if die == 1
+    #       ones << 1
+    #       # puts "Pushed a 1 into ones array"
+    #     end
+    #   end
+    #   if ones.size != 3
+    #     ones.each do |one|
+    #       points += 100
+    #       # puts "We are adding points (ones)! total: #{points}"
+    #       # puts "This is the ones array: #{ones}"
+    #     end
+    #   elsif ones.size == 3
+    #     points += 1000
+    #   end
+    # end
 
     return points
   end
