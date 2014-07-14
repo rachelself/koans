@@ -7,8 +7,13 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # end
 
 class DiceSet
-  def roll
-    Random.new(1..6)
+  def roll(number)
+
+    values = []
+
+    number.times do
+      values << Random.new(1,6)
+    end
   end
 
 end
